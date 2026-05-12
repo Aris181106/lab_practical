@@ -24,7 +24,8 @@
     background-color: white;
     text-align: center;
     flex-direction: column;
-     justify-content: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .hero span{
     color: yellow;
