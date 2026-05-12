@@ -41,3 +41,12 @@
 .portfolio-grid p{
     text-align: center;
 }
+@media (max-width: 768px){
+    .portfolio-grid{grid-template-columns: 1fr;}
+}
+@media (max-width: 1024px){
+    .portfolio-grid{grid-template-columns: repeat(2, 1fr);}
+}
+.portfolio-grid img:hover{
+    transform: scale(1.1);
+}
