@@ -50,3 +50,20 @@
 .portfolio-grid img:hover{
     transform: scale(1.1);
 }
+.portfolio-item{
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.portfolio-overlay{
+    position: absolute;
+    inset : 0;  /* top left right bottom*/
+    background-color: rgba(0, 0, 0, 0.1); /* 3 mau, do trong suot*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+}
+.portfolio-item :hover.portfolio-overlay{
+    opacity: 1;
+}
