@@ -90,7 +90,7 @@ git commit -m "fix"                              # quá ngắn
 # Bài 2.1 - Bootstrap Conversion (3 commits)
 git commit -m "[BOOTSTRAP] Add Bootstrap CDN and initial setup"
 git commit -m "[REFACTOR] Convert grid to Bootstrap columns"
-git commit -m "[STYLE] Apply Bootstrap typography utilities"
+git commit -m "[STYLE] Apply Bootstrap typography utilities"    
 
 # Bài 2.2 - Blog Layout (3 commits)
 git commit -m "[FEATURE] Create blog post cards layout"
