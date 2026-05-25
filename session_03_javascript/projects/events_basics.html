@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Events Basics</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        padding: 2rem;
+        transition: background-color 0.3s;
+      }
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin: 0.5rem;
+        transition: all 0.2s;
+      }
+      .btn-blue {
+        background: #3b82f6;
+        color: white;
+      }
+      .btn-green {
+        background: #22c55e;
+        color: white;
+      }
+      .btn-red {
+        background: #ef4444;
+        color: white;
+      }
+      .btn:hover {
+        opacity: 0.85;
+        transform: scale(1.02);
+      }
+      #output {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 8px;
+        min-height: 50px;
+      }
+      .counter-display {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🖱️ Click Events</h1>
+
+    <!-- Phần 1: Đổi màu nền -->
+    <h2>Bài 1: Đổi màu nền</h2>
+    <button class="btn btn-blue" id="btn-blue">Xanh dương</button>
+    <button class="btn btn-green" id="btn-green">Xanh lá</button>
+    <button class="btn btn-red" id="btn-red">Đỏ</button>
+
+    <!-- Phần 2: Bộ đếm -->
+    <h2>Bài 2: Bộ đếm</h2>
+    <div class="counter-display" id="counter">0</div>
+    <button class="btn btn-green" id="btn-increase">+1 Tăng</button>
+    <button class="btn btn-red" id="btn-decrease">-1 Giảm</button>
+    <button class="btn btn-blue" id="btn-reset">↺ Reset</button>
+
+    <!-- Phần 3: Output -->
+    <h2>Bài 3: Nhật ký sự kiện</h2>
+    <div id="output">Chưa có sự kiện nào...</div>
+    <!-- Thêm vào events_basics.html trước </body> -->
+
+    <h2>Bài 4: Tìm kiếm realtime</h2>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Gõ để tìm kiếm..."
+      style="
+        padding: 0.75rem;
+        width: 300px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+      "
+    />
+    <p id="search-result" style="margin-top: 0.5rem; color: #64748b"></p>
+
+    <h2>Bài 5: Đếm ký tự</h2>
+    <textarea
+      id="message-input"
+      placeholder="Nhập tin nhắn..."
+      rows="3"
+      style="
+        padding: 0.75rem;
+        width: 100%;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        resize: vertical;
+      "
+    ></textarea>
+    <p id="char-count" style="margin-top: 0.25rem; color: #64748b">
+      0 / 200 ký tự
+    </p>
+
+    <h2>Bài 6: Hiển thị giá trị realtime</h2>
+    <input
+      type="range"
+      id="range-input"
+      min="0"
+      max="100"
+      value="50"
+      style="width: 300px"
+    />
+    <span
+      id="range-value"
+      style="font-size: 1.5rem; font-weight: 700; margin-left: 1rem"
+      >50</span
+    >
+    <script>
+      // ===== BÀI 1: ĐỔI MÀU NỀN =====
+      const btnBlue = document.getElementById("btn-blue");
+      const btnGreen = document.getElementById("btn-green");
+      const btnRed = document.getElementById("btn-red");
+
+      btnBlue.addEventListener("click", () => {
+        document.body.style.backgroundColor = "#dbeafe";
+        logEvent("Đã chuyển sang màu xanh dương");
+      });
+
+      btnGreen.addEventListener("click", () => {
+        document.body.style.backgroundColor = "#dcfce7";
+        logEvent("Đã chuyển sang màu xanh lá");
+      });
+
+      btnRed.addEventListener("click", () => {
+        document.body.style.backgroundColor = "#fee2e2";
+        logEvent("Đã chuyển sang màu đỏ");
+      });
+
+      // ===== BÀI 2: BỘ ĐẾM =====
+      let count = 0;
+      const counterEl = document.getElementById("counter");
+
+      document.getElementById("btn-increase").addEventListener("click", () => {
+        count++;
+        counterEl.textContent = count;
+        counterEl.style.color = count > 0 ? "#22c55e" : "#1e293b";
+        logEvent(`Tăng: ${count}`);
+      });
+
+      document.getElementById("btn-decrease").addEventListener("click", () => {
+        count--;
+        counterEl.textContent = count;
+        counterEl.style.color = count < 0 ? "#ef4444" : "#1e293b";
+        logEvent(`Giảm: ${count}`);
+      });
+
+      document.getElementById("btn-reset").addEventListener("click", () => {
+        count = 0;
+        counterEl.textContent = count;
+        counterEl.style.color = "#1e293b";
+        logEvent("Reset về 0");
+      });
+
+      // ===== BÀI 3: NHẬT KÝ =====
+      const output = document.getElementById("output");
+
+      function logEvent(message) {
+        const time = new Date().toLocaleTimeString("vi-VN");
+        output.innerHTML = `<div>[${time}] ${message}</div>` + output.innerHTML;
+      }
+      // ===== BÀI 4: TÌM KIẾM REALTIME =====
+      const searchInput = document.getElementById("search-input");
+      const searchResult = document.getElementById("search-result");
+
+      const monHoc = [
+        "HTML cơ bản",
+        "CSS Layout",
+        "JavaScript DOM",
+        "Bootstrap 5",
+        "React cơ bản",
+        "Vue.js",
+        "Node.js",
+        "TypeScript",
+        "Git & GitHub",
+        "REST API",
+      ];
+
+      searchInput.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query === "") {
+          searchResult.textContent = "Gõ để tìm kiếm...";
+          return;
+        }
+
+        const ketQua = monHoc.filter((mon) =>
+          mon.toLowerCase().includes(query),
+        );
+
+        if (ketQua.length > 0) {
+          searchResult.innerHTML = `Tìm thấy <strong>${ketQua.length}</strong> kết quả: ${ketQua.join(", ")}`;
+          searchResult.style.color = "#166534";
+        } else {
+          searchResult.textContent = `Không tìm thấy "${query}"`;
+          searchResult.style.color = "#991b1b";
+        }
+      });
+
+      // ===== BÀI 5: ĐẾM KÝ TỰ =====
+      const messageInput = document.getElementById("message-input");
+      const charCount = document.getElementById("char-count");
+
+      messageInput.addEventListener("input", (e) => {
+        const length = e.target.value.length;
+        charCount.textContent = `${length} / 200 ký tự`;
+
+        if (length > 200) {
+          charCount.style.color = "#ef4444";
+          charCount.textContent += " — Vượt quá giới hạn!";
+        } else if (length > 150) {
+          charCount.style.color = "#f59e0b";
+        } else {
+          charCount.style.color = "#64748b";
+        }
+      });
+
+      // ===== BÀI 6: RANGE SLIDER =====
+      const rangeInput = document.getElementById("range-input");
+      const rangeValue = document.getElementById("range-value");
+
+      rangeInput.addEventListener("input", (e) => {
+        rangeValue.textContent = e.target.value;
+
+        // Đổi màu theo giá trị
+        const val = parseInt(e.target.value);
+        if (val < 30) rangeValue.style.color = "#3b82f6";
+        else if (val < 70) rangeValue.style.color = "#22c55e";
+        else rangeValue.style.color = "#ef4444";
+      });
+    </script>
+    <!-- 1. event input dùng khi mỗi ký tự được nhập, dùng cho các tìm kiếm realtime, đếm ký tự còn change dùng khi blue/commit và dùng cho các select, checkbox, date picker  -->
+    <!-- 2. Dùng e.target.value sẽ hiện luôn các thông tin hiện có mà liên quan đến ký tự vừa nhập của user-->
+  </body>
+</html>
+Sự khác biệt giữa event input và change?
+Tại sao dùng e.target.value thay vì searchInput.value?
