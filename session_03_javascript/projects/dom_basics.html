@@ -28,6 +28,10 @@
             item.setAttribute("data-index", index);
         });
         document.getElementById('title').textContent = "DOM Practice";
+        document.querySelectorAll('.item')[1].classList.toggle('text-red');
+        document.querySelectorAll('.item').forEach(function(item){
+            item.classList.remove('highlight');
+        })
         console.log("Document:", document);
         console.log("Title:", document.title);
         console.log("Body:", document.body);
