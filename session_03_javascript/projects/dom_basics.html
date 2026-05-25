@@ -32,6 +32,25 @@
         document.querySelectorAll('.item').forEach(function(item){
             item.classList.remove('highlight');
         })
+        document.querySelectorAll('.item').forEach(function(item){
+        if(item.getAttribute('data-index') % 2 == 0){
+            item.style.backgroundColor = '#dbeafe';
+            }
+        else{
+            item.style.backgroundColor = '#fce7f3';
+        }
+        });
+        document.querySelectorAll('.item').forEach(function(item){
+            if(item.getAttribute('data-index') == 0){
+                item.style.fontSize = ((0 + 1) * 14 ) + 'px';
+            }
+            else if(item.getAttribute('data-index') == 1){
+                item.style.fontSize = ((1 + 1) * 14 ) + 'px';
+            }
+            else if(item.getAttribute('data-index') == 2){
+                item.style.fontSize = ((2 + 1) * 14 ) + 'px';
+            }
+        });
         console.log("Document:", document);
         console.log("Title:", document.title);
         console.log("Body:", document.body);
