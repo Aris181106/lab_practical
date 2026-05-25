@@ -51,6 +51,14 @@
                 item.style.fontSize = ((2 + 1) * 14 ) + 'px';
             }
         });
+        function themMonHoc(tenMon){
+            const li = document.createElement('li');
+            li.textContent = tenMon;
+            return li;
+        }
+        const danhsach = document.getElementById('danh-sach');
+        danhsach.appendChild(themMonHoc('Vue.js'));
+        danhsach.appendChild(themMonHoc('Node.js'));
         console.log("Document:", document);
         console.log("Title:", document.title);
         console.log("Body:", document.body);
