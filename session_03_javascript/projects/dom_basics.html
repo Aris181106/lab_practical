@@ -17,10 +17,17 @@
     <script>
         document.getElementById('title').textContent = "Nguyen Viet Tien";
         document.querySelector('.description').textContent = "Toi dang hoc Dom";
-        document.querySelector('.item').innerHTML = "<strong>HTML5<strong>";
+        document.querySelector('.item').innerHTML = "<strong>HTML5</strong>";
         document.querySelectorAll('.item').forEach(function(item){
             item.textContent += " da hoc";
         });
+        document.querySelectorAll('.item').forEach(function(item){
+            item.className += " highlight";
+        });
+        document.querySelectorAll('.item').forEach(function(item, index){
+            item.setAttribute("data-index", index);
+        });
+        document.getElementById('title').textContent = "DOM Practice";
         console.log("Document:", document);
         console.log("Title:", document.title);
         console.log("Body:", document.body);
