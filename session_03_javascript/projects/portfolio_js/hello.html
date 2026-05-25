@@ -1,47 +1,63 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello JavaScript</title>
-</head>
-<body>
-    <h1>Bài tập đầu tiên với JavaScript</h1>
-    <p>Mở Console (F12 → Console) để xem kết quả</p>
+    <!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello JavaScript</title>
+    </head>
+    <body>
+        <h1>Bài tập đầu tiên với JavaScript</h1>
+        <p>Mở Console (F12 → Console) để xem kết quả</p>
 
-    <script>
-       let HoTen = "Nguyen Viet Tien";
-       let diaChi = 'Ha Noi';
-       let xinChao = `Xin chao ${HoTen}`;
-       let MonHoc = "CSE391";
-       let TinChi = 3;
-       let BatBuoc = true;
-       let DiemSo;
-       let SanPham = "Laptop";
-       let SoLuong = "2";
-       let DonGia = "15000000";
-       const pi = 3.1415;
-       let BanKinh = 5;
-       let Diem = 5;
-       let DiemChuyenCan = 7;
-       let MonAn = ["Com", "Bun Cha", "Pho", "Mi Tom"]
-       console.log(typeof HoTen);
-       console.log(xinChao);
-       console.log("Mon Hoc:", MonHoc);
-       console.log("So tin chi:", TinChi);
-       console.log("Bat buoc:", BatBuoc);
-       console.log("Diem: ", DiemSo);
-       console.log("Don gia: ", SoLuong * DonGia);
-       console.log("Dien tich hinh tron: ", pi*BanKinh*BanKinh);
-       console.log("Chu vi hinh tron: ", 2 * pi * BanKinh);
-       console.log((Diem >= 5 && DiemChuyenCan >= 7) ? "Pass" : "Fail");
-       console.log((Diem >=8.5 ) ? "A grade" : Diem >= 7 ? "B grade" : Diem >= 5 ? "C grade" : "D grade");
-       MonAn.unshift("Com Tam Sa Bi Chuong");
-       MonAn.pop();
-       MonAn.push("Kho ga");
-       console.log("Cac mon yeu thich:", MonAn);
-       console.log("Mon an dau tien:", MonAn[0]);
-       console.log("Mon an cuoi cung: ", MonAn[4]);
-       console.log("Pho o vi tri so: ", MonAn.indexOf("Pho"));
-    </script>
-</body>
-</html>
+        <script>
+        let HoTen = "Nguyen Viet Tien";
+        let diaChi = 'Ha Noi';
+        let xinChao = `Xin chao ${HoTen}`;
+        let MonHoc = "CSE391";
+        let TinChi = 3;
+        let BatBuoc = true;
+        let DiemSo;
+        let SanPham = "Laptop";
+        let SoLuong = "2";
+        let DonGia = "15000000";
+        const pi = 3.1415;
+        let BanKinh = 5;
+        let Diem = 5;
+        let DiemChuyenCan = 7;
+        let MonAn = ["Com", "Bun Cha", "Pho", "Mi Tom"]
+        let HoSo = {
+            HoTen: "Nguyen Viet Tien",
+            Tuoi : 19,
+            Nganh : "CNTT",
+            SoThich : ["Cau Long", "Da Bong", "TA"],
+            diachi : {
+                tinh : "Ha Noi",
+                quan : "Ha Dong",
+                duong : 70,
+            }
+        }
+        console.log(typeof HoTen);   
+        console.log(xinChao);
+        console.log("Mon Hoc:", MonHoc);
+        console.log("So tin chi:", TinChi);
+        console.log("Bat buoc:", BatBuoc);
+        console.log("Diem: ", DiemSo);
+        console.log("Don gia: ", SoLuong * DonGia);
+        console.log("Dien tich hinh tron: ", pi*BanKinh*BanKinh);
+        console.log("Chu vi hinh tron: ", 2 * pi * BanKinh);
+        console.log((Diem >= 5 && DiemChuyenCan >= 7) ? "Pass" : "Fail");
+        console.log((Diem >=8.5 ) ? "A grade" : Diem >= 7 ? "B grade" : Diem >= 5 ? "C grade" : "D grade");
+        MonAn.unshift("Com Tam Sa Bi Chuong");
+        MonAn.pop();
+        MonAn.push("Kho ga");
+        console.log("Cac mon yeu thich:", MonAn);
+        console.log("Mon an dau tien:", MonAn[0]);
+        console.log("Mon an cuoi cung: ", MonAn[4]);
+        console.log("Pho o vi tri so: ", MonAn.indexOf("Pho"));
+        console.log("Thong tin bao gom:", Object.keys(HoSo));
+        console.log("Toi la: ", HoSo.HoTen, HoSo["Tuoi"], "tuoi" , "hoc nganh", HoSo.Nganh);
+        console.log("So thich: ", HoSo.SoThich[0]);
+        console.log("Dia chi: ", Object.values(HoSo.diachi));
+        HoSo.email = "tienexample@gmail.com";
+        </script>
+    </body>
+    </html>
