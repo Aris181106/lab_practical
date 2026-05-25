@@ -15,6 +15,12 @@
     </ul>
     
     <script>
+        document.getElementById('title').textContent = "Nguyen Viet Tien";
+        document.querySelector('.description').textContent = "Toi dang hoc Dom";
+        document.querySelector('.item').innerHTML = "<strong>HTML5<strong>";
+        document.querySelectorAll('.item').forEach(function(item){
+            item.textContent += " da hoc";
+        });
         console.log("Document:", document);
         console.log("Title:", document.title);
         console.log("Body:", document.body);
