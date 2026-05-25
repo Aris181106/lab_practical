@@ -35,6 +35,28 @@
                 duong : 70,
             }
         }
+        function maxHaiSo(a, b){
+            if(a > b){
+                return a;
+            }
+            else{
+                return b;
+            }
+        }
+        function laNamNhuan(nam){
+            if(nam % 4 == 0 && nam % 100 != 0 || nam % 400 == 0){
+                return "Nam nhuan";
+            }
+            else{
+                return "Khong phai nam nhuan";
+            }
+        }
+        function gioiThieu(hoten, tuoi, nganh){
+            return "Toi ten la: " + hoten + ", " + tuoi + " tuoi" + ", " + "hoc " + nganh;
+        }
+        function tinhGiaBan (giaGoc, giamGia = 0){
+            return giaGoc - (giaGoc * giamGia / 100);
+        }
         console.log(typeof HoTen);   
         console.log(xinChao);
         console.log("Mon Hoc:", MonHoc);
@@ -58,6 +80,10 @@
         console.log("So thich: ", HoSo.SoThich[0]);
         console.log("Dia chi: ", Object.values(HoSo.diachi));
         HoSo.email = "tienexample@gmail.com"
+        console.log("So lon hon la: ", maxHaiSo(10, 15));
+        console.log("2024", laNamNhuan(2024));
+        console.log("Thong tin ca nhan: ", gioiThieu("Tien", 19, "CNTT"));
+        console.log("Gia ban: ", tinhGiaBan(20000, 15));
         </script>
     </body>
     </html>
