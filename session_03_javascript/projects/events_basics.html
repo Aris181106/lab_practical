@@ -117,6 +117,83 @@
       style="font-size: 1.5rem; font-weight: 700; margin-left: 1rem"
       >50</span
     >
+    <h2>Bài 7: Phím tắt</h2>
+    <p>Nhấn phím bất kỳ để xem thông tin:</p>
+    <div
+      id="key-display"
+      style="
+        font-size: 2rem;
+        font-weight: 700;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 8px;
+        text-align: center;
+      "
+    >
+      Chờ bạn nhấn phím...
+    </div>
+    <p style="margin-top: 0.5rem; color: #64748b">
+      Thử: Enter, Escape, Space, mũi tên...
+    </p>
+
+    <h2>Bài 8: Nhập liệu nâng cao</h2>
+    <input
+      type="text"
+      id="special-input"
+      placeholder="Nhập và nhấn Enter..."
+      style="
+        padding: 0.75rem;
+        width: 300px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+      "
+    />
+    <div
+      id="tag-list"
+      style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem"
+    ></div>
+    <!-- Thêm vào events_basics.html -->
+
+<h2>Bài 9: Form đăng ký</h2>
+<form id="register-form" style="max-width:400px;">
+    <div style="margin-bottom:0.75rem;">
+        <label>Họ tên:</label><br>
+        <input type="text" id="reg-name" required
+            style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div style="margin-bottom:0.75rem;">
+        <label>Email:</label><br>
+        <input type="email" id="reg-email" required
+            style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div style="margin-bottom:0.75rem;">
+        <label>Mật khẩu:</label><br>
+        <input type="password" id="reg-password" required minlength="6"
+            style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <button type="submit" class="btn btn-blue">Đăng ký</button>
+</form>
+<div id="form-result" style="margin-top:1rem;"></div>
+<!-- Thêm vào events_basics.html -->
+
+<h2>Bài 10: Event Delegation</h2>
+<p>Click vào bất kỳ mục nào trong danh sách:</p>
+<ul id="delegation-list" style="list-style:none; padding:0;">
+    <li data-action="edit" style="padding:0.75rem; margin:0.5rem 0; background:#dbeafe; border-radius:8px; cursor:pointer;">
+        ✏️ Sửa thông tin cá nhân
+    </li>
+    <li data-action="password" style="padding:0.75rem; margin:0.5rem 0; background:#dcfce7; border-radius:8px; cursor:pointer;">
+        🔒 Đổi mật khẩu
+    </li>
+    <li data-action="avatar" style="padding:0.75rem; margin:0.5rem 0; background:#fef3c7; border-radius:8px; cursor:pointer;">
+        📷 Đổi ảnh đại diện
+    </li>
+    <li data-action="delete" style="padding:0.75rem; margin:0.5rem 0; background:#fee2e2; border-radius:8px; cursor:pointer;">
+        🗑️ Xóa tài khoản
+    </li>
+</ul>
+<div id="delegation-output" style="margin-top:1rem; padding:1rem; background:#f1f5f9; border-radius:8px;"></div>
     <script>
       // ===== BÀI 1: ĐỔI MÀU NỀN =====
       const btnBlue = document.getElementById("btn-blue");
@@ -239,6 +316,159 @@
         else if (val < 70) rangeValue.style.color = "#22c55e";
         else rangeValue.style.color = "#ef4444";
       });
+      // ===== BÀI 7: PHÍM TẮT =====
+      const keyDisplay = document.getElementById("key-display");
+
+      document.addEventListener("keydown", (e) => {
+        keyDisplay.innerHTML = `
+        <span style="color:#3b82f6;">Key:</span> "${e.key}" &nbsp;|&nbsp;
+        <span style="color:#22c55e;">Code:</span> "${e.code}" &nbsp;|&nbsp;
+        <span style="color:#f59e0b;">Shift:</span> ${e.shiftKey} &nbsp;|&nbsp;
+        <span style="color:#ef4444;">Ctrl:</span> ${e.ctrlKey}
+    `;
+      });
+
+      // ===== BÀI 8: TAG INPUT (nhập + Enter) =====
+      const specialInput = document.getElementById("special-input");
+      const tagList = document.getElementById("tag-list");
+      let tags = [];
+
+      specialInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const value = specialInput.value.trim();
+
+          if (value === "") return;
+          if (tags.includes(value)) {
+            alert("Tag này đã tồn tại!");
+            return;
+          }
+
+          tags.push(value);
+          renderTags();
+          specialInput.value = "";
+        }
+
+        if (
+          e.key === "Backspace" &&
+          specialInput.value === "" &&
+          tags.length > 0
+        ) {
+          tags.pop();
+          renderTags();
+        }
+      });
+
+      function renderTags() {
+        tagList.innerHTML = tags
+          .map(
+            (tag, index) => `
+        <span style="
+            background:#dbeafe;
+            padding:0.3rem 0.8rem;
+            border-radius:999px;
+            font-size:0.85rem;
+            display:flex;
+            align-items:center;
+            gap:0.3rem;
+        ">
+            ${tag}
+            <button onclick="removeTag(${index})" style="
+                border:none;
+                background:transparent;
+                cursor:pointer;
+                font-size:1rem;
+                color:#3b82f6;
+            ">&times;</button>
+        </span>
+    `,
+          )
+          .join("");
+      }
+
+      function removeTag(index) {
+        tags.splice(index, 1);
+        renderTags();
+      }
+      // ===== BÀI 9: FORM SUBMIT =====
+const form = document.getElementById('register-form');
+const formResult = document.getElementById('form-result');
+
+form.addEventListener('submit', (e) => {
+    // ⚠️ QUAN TRỌNG: Ngăn form reload trang
+    e.preventDefault();
+
+    // Lấy giá trị
+    const name = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const password = document.getElementById('reg-password').value;
+
+    // Validate đơn giản
+    if (name.length < 2) {
+        showFormError('Họ tên phải ít nhất 2 ký tự');
+        return;
+    }
+
+    if (!email.includes('@')) {
+        showFormError('Email không hợp lệ');
+        return;
+    }
+
+    if (password.length < 6) {
+        showFormError('Mật khẩu phải ít nhất 6 ký tự');
+        return;
+    }
+
+    // Thành công
+    formResult.innerHTML = `
+        <div style="background:#dcfce7; padding:1rem; border-radius:8px; border-left:4px solid #22c55e;">
+            ✅ <strong>Đăng ký thành công!</strong><br>
+            Họ tên: ${name}<br>
+            Email: ${email}
+        </div>
+    `;
+
+    // Reset form
+    form.reset();
+});
+
+function showFormError(message) {
+    formResult.innerHTML = `
+        <div style="background:#fee2e2; padding:1rem; border-radius:8px; border-left:4px solid #ef4444;">
+            ❌ ${message}
+        </div>
+    `;
+}
+// ===== BÀI 10: EVENT DELEGATION =====
+// Thay vì gắn listener cho TỪNG <li>, ta gắn 1 listener cho <ul>
+
+const list = document.getElementById('delegation-list');
+const delegationOutput = document.getElementById('delegation-output');
+
+list.addEventListener('click', (e) => {
+    // e.target = phần tử được click trực tiếp
+    // closest('li') = tìm phần tử <li> gần nhất (kể từ e.target)
+
+    const li = e.target.closest('li');
+    if (!li) return; // Click vào vùng trống → bỏ qua
+
+    const action = li.dataset.action;
+
+    const messages = {
+        edit:     '✏️ Bạn chọn: Sửa thông tin cá nhân',
+        password: '🔒 Bạn chọn: Đổi mật khẩu',
+        avatar:   '📷 Bạn chọn: Đổi ảnh đại diện',
+        delete:   '🗑️ Bạn chọn: Xóa tài khoản'
+    };
+
+    delegationOutput.innerHTML = `<strong>${messages[action] || 'Không xác định'}</strong>`;
+
+    // Highlight mục được chọn
+    list.querySelectorAll('li').forEach(item => {
+        item.style.outline = 'none';
+    });
+    li.style.outline = '3px solid #3b82f6';
+});
     </script>
     <!-- 1. event input dùng khi mỗi ký tự được nhập, dùng cho các tìm kiếm realtime, đếm ký tự còn change dùng khi blue/commit và dùng cho các select, checkbox, date picker  -->
     <!-- 2. Dùng e.target.value sẽ hiện luôn các thông tin hiện có mà liên quan đến ký tự vừa nhập của user-->
