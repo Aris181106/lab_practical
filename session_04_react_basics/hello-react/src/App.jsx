@@ -10,6 +10,7 @@ import LifecycleDemo from "./components/LifecycleDemo";
 import GoodCounter from "./components/GoodCounter";
 import BadCounter from "./components/BadCounter";
 import FlowDemo from "./components/FlowDemo";
+import SimpleVariables from "./components/SimpleVariables";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <GoodCounter />
       <BadCounter />
       <FlowDemo />
+      <SimpleVariables/>
     </>
   );
 }
