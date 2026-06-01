@@ -11,6 +11,7 @@ import GoodCounter from "./components/GoodCounter";
 import BadCounter from "./components/BadCounter";
 import FlowDemo from "./components/FlowDemo";
 import SimpleVariables from "./components/SimpleVariables";
+import TernaryDemo from "./components/TernaryDemo";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <BadCounter />
       <FlowDemo />
       <SimpleVariables/>
+      <TernaryDemo/>
     </>
   );
 }
