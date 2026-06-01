@@ -12,6 +12,7 @@ import BadCounter from "./components/BadCounter";
 import FlowDemo from "./components/FlowDemo";
 import SimpleVariables from "./components/SimpleVariables";
 import TernaryDemo from "./components/TernaryDemo";
+import ListRendering from "./components/ListRendering";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <FlowDemo />
       <SimpleVariables/>
       <TernaryDemo/>
+      <ListRendering/>
     </>
   );
 }
